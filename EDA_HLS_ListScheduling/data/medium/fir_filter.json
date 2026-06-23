@@ -1,0 +1,476 @@
+{
+  "nodes": [
+    {
+      "id": "b0",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "x0",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "b1",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "x1",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "b2",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "x2",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "b3",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "x3",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "b4",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "x4",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "b5",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "x5",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "b6",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "x6",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "b7",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "x7",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const0",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const1",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const2",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const3",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const4",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const5",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const6",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const7",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const8",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const9",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const10",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const11",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const12",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "const13",
+      "type": "INPUT",
+      "delay": 0,
+      "deps": []
+    },
+    {
+      "id": "m0",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "b0",
+        "x0"
+      ]
+    },
+    {
+      "id": "m1",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "b1",
+        "x1"
+      ]
+    },
+    {
+      "id": "m2",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "b2",
+        "x2"
+      ]
+    },
+    {
+      "id": "m3",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "b3",
+        "x3"
+      ]
+    },
+    {
+      "id": "m4",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "b4",
+        "x4"
+      ]
+    },
+    {
+      "id": "m5",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "b5",
+        "x5"
+      ]
+    },
+    {
+      "id": "m6",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "b6",
+        "x6"
+      ]
+    },
+    {
+      "id": "m7",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "b7",
+        "x7"
+      ]
+    },
+    {
+      "id": "a0",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "m0",
+        "m1"
+      ]
+    },
+    {
+      "id": "a1",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "a0",
+        "m2"
+      ]
+    },
+    {
+      "id": "aux0",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "a0",
+        "const0"
+      ]
+    },
+    {
+      "id": "a2",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "a1",
+        "m3"
+      ]
+    },
+    {
+      "id": "aux1",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "a1",
+        "const1"
+      ]
+    },
+    {
+      "id": "aux7",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "aux0",
+        "const7"
+      ]
+    },
+    {
+      "id": "a3",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "a2",
+        "m4"
+      ]
+    },
+    {
+      "id": "aux2",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "a2",
+        "const2"
+      ]
+    },
+    {
+      "id": "aux8",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "aux1",
+        "const8"
+      ]
+    },
+    {
+      "id": "a4",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "a3",
+        "m5"
+      ]
+    },
+    {
+      "id": "aux3",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "a3",
+        "const3"
+      ]
+    },
+    {
+      "id": "aux9",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "aux2",
+        "const9"
+      ]
+    },
+    {
+      "id": "aux15",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "aux7",
+        "aux2"
+      ]
+    },
+    {
+      "id": "a5",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "a4",
+        "m6"
+      ]
+    },
+    {
+      "id": "aux4",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "a4",
+        "const4"
+      ]
+    },
+    {
+      "id": "aux10",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "aux3",
+        "const10"
+      ]
+    },
+    {
+      "id": "a6",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "a5",
+        "m7"
+      ]
+    },
+    {
+      "id": "aux5",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "a5",
+        "const5"
+      ]
+    },
+    {
+      "id": "aux11",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "aux4",
+        "const11"
+      ]
+    },
+    {
+      "id": "aux6",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "a6",
+        "const6"
+      ]
+    },
+    {
+      "id": "out",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "a6",
+        "aux15"
+      ]
+    },
+    {
+      "id": "aux12",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "aux5",
+        "const12"
+      ]
+    },
+    {
+      "id": "aux13",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "aux6",
+        "const13"
+      ]
+    },
+    {
+      "id": "aux14",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "aux6",
+        "aux1"
+      ]
+    }
+  ],
+  "resources": {
+    "ADD": 4,
+    "MUL": 3
+  }
+}

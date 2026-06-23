@@ -1,0 +1,91 @@
+{
+  "nodes": [
+    {
+      "id": "n0",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "in0",
+        "in1"
+      ]
+    },
+    {
+      "id": "n1",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "in2",
+        "in3"
+      ]
+    },
+    {
+      "id": "n2",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "n0",
+        "in4"
+      ]
+    },
+    {
+      "id": "n3",
+      "type": "SUB",
+      "delay": 1,
+      "deps": [
+        "in5",
+        "n1"
+      ]
+    },
+    {
+      "id": "n4",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "n2",
+        "n3"
+      ]
+    },
+    {
+      "id": "n5",
+      "type": "ADD",
+      "delay": 1,
+      "deps": [
+        "n4",
+        "in6"
+      ]
+    },
+    {
+      "id": "n6",
+      "type": "DIV",
+      "delay": 3,
+      "deps": [
+        "n5",
+        "in7"
+      ]
+    },
+    {
+      "id": "n7",
+      "type": "SUB",
+      "delay": 1,
+      "deps": [
+        "n6",
+        "in8"
+      ]
+    },
+    {
+      "id": "n8",
+      "type": "MUL",
+      "delay": 2,
+      "deps": [
+        "n7",
+        "in9"
+      ]
+    }
+  ],
+  "resources": {
+    "ADD": 2,
+    "MUL": 2,
+    "SUB": 1,
+    "DIV": 1
+  }
+}

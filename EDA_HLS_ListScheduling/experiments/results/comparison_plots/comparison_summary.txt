@@ -1,0 +1,30 @@
+STRATEGY COMPARISON SUMMARY
+====================================================================================================
+
+DFG: simple_expr
+Resources: {'ADD': 2, 'MUL': 2, 'SUB': 1, 'DIV': 1}
+  Mobility-First: Latency=12, Utilization=19.44%, Runtime=0.00ms
+  CP-First: Latency=12, Utilization=19.44%, Runtime=0.00ms
+  LDF-First: Latency=12, Utilization=19.44%, Runtime=0.00ms
+  Random (avg): Latency=12.0±0.0 (range: 12-12), Utilization=19.44%, Runtime=0.15ms
+
+DFG: basic_dag
+Resources: {'ADD': 2, 'MUL': 2, 'SUB': 1, 'DIV': 1}
+  Mobility-First: Latency=16, Utilization=18.75%, Runtime=0.00ms
+  CP-First: Latency=16, Utilization=18.75%, Runtime=0.00ms
+  LDF-First: Latency=16, Utilization=18.75%, Runtime=0.00ms
+  Random (avg): Latency=16.0±0.0 (range: 16-16), Utilization=18.75%, Runtime=0.15ms
+
+DFG: fir_filter
+Resources: {'ADD': 4, 'MUL': 3}
+  Mobility-First: Latency=12, Utilization=54.76%, Runtime=0.00ms
+  CP-First: Latency=12, Utilization=54.76%, Runtime=0.00ms
+  LDF-First: Latency=12, Utilization=54.76%, Runtime=0.00ms
+  Random (avg): Latency=15.1±1.1 (range: 13-16), Utilization=43.78%, Runtime=0.25ms
+
+DFG: diffeq_solver
+Resources: {'ADD': 4, 'MUL': 2, 'SUB': 2}
+  Mobility-First: Latency=24, Utilization=29.69%, Runtime=0.00ms
+  CP-First: Latency=24, Utilization=29.69%, Runtime=1.02ms
+  LDF-First: Latency=24, Utilization=29.69%, Runtime=0.00ms
+  Random (avg): Latency=24.0±0.0 (range: 24-24), Utilization=29.69%, Runtime=0.30ms
