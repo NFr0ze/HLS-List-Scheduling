@@ -1,0 +1,13 @@
+UNIFIED EXPERIMENT RUNNER SUMMARY
+======================================================================
+Total time: 16.89s
+
+  [OK  ] Main Scheduling Workflow
+  [OK  ] Strategy Comparison
+  [OK  ] Sensitivity Analysis
+  [OK  ] Pareto Frontier Analysis
+  [OK  ] Pipeline Scheduling
+  [OK  ] Scalability Test
+  [OK  ] Schedulability Test
+
+======================================================================

@@ -1,0 +1,18 @@
+SCHEDULABILITY TEST SUMMARY: fir_filter
+============================================================
+Critical Path: 12
+
+Constraint   Actual     Status         
+------------------------------------------------------------
+12           12         Schedulable    
+11           12         UNschedulable  
+10           12         UNschedulable  
+9            12         UNschedulable  
+8            12         UNschedulable  
+7            12         UNschedulable  
+6            12         UNschedulable  
+5            12         UNschedulable  
+4            12         UNschedulable  
+3            12         UNschedulable  
+2            12         UNschedulable  
+1            12         UNschedulable  

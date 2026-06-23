@@ -1,0 +1,233 @@
+运行说明书
+
+1. 项目概述
+
+这个项目主要实现了资源约束下高层次综合（HLS）的列表调度（List Scheduling）算法，
+包含ASAP/ALAP静态时序分析、Mobility优先级排序、资源受限调度引擎、
+评价指标计算与可视化输出等功能。代码里已经集成了比较完整的实验流程，
+跑起来不复杂。
+
+2. 快速开始
+
+ 一键运行所有实验
+
+在项目根目录下直接运行：
+```bash
+python main.py
+```
+
+上面这条命令会依次做以下事情：
+1. 加载小、中、大三级测试数据集
+2. 对每个数据集跑ASAP/ALAP分析
+3. 执行List Scheduling调度
+4. 验证调度结果对不对
+5. 输出Latency、Utilization等指标
+6. 生成甘特图、资源利用率曲线、DFG拓扑图和调度表
+
+所有输出结果默认保存在 `experiments/results/` 目录下，可以自己改。
+
+命令行参数
+
+`main.py` 支持一些命令行参数，方便按需调整：
+
+```bash
+跑指定数据集
+python main.py --dataset data/medium/fir_filter.json
+
+换调度策略
+python main.py --strategy cp_first    # 可选: mobility, cp_first, ldf
+
+指定输出目录
+python main.py --output-dir ./my_results
+
+覆盖资源限制
+python main.py --resources '{"ADD":2,"MUL":1}'
+
+启用详细日志
+python main.py --verbose
+```
+
+一键运行全部实验
+```bash
+python run_all_experiments.py
+```
+
+自动顺序跑完所有实验（main.py + 6个对照实验脚本），最后输出汇总表。
+几个常用参数：
+```bash
+python run_all_experiments.py --verbose        显示详细输出
+python run_all_experiments.py --skip-main      跳过main.py
+python run_all_experiments.py --skip-pipeline  跳过流水线实验
+```
+
+运行策略对比实验
+```bash
+python experiments/compare_strategies.py
+python experiments/compare_strategies.py --output-dir ./my_results
+```
+
+对比 Mobility最小优先 和 随机选择 两种策略在相同数据集上的表现，
+输出对比柱状图和数据汇总表。随机策略跑20次取平均，结果相对稳定。
+
+运行灵敏度分析实验
+
+```bash
+python experiments/sensitivity_analysis.py
+```
+
+固定DFG（FIR滤波器 / Diffeq求解器），逐步改变资源配额，
+观察Latency随资源增加的变化趋势，输出折线图。资源越多latency越低，
+但边际效应会递减。
+
+运行面积-延迟帕累托前沿分析
+
+```bash
+python experiments/pareto_analysis.py
+```
+
+网格搜索不同的资源配置组合，跑调度+绑定，
+绘制面积-延迟帕累托前沿散点图，标出帕累托最优点。这个实验跑起来比较慢，
+因为组合数比较多，可以耐心等待。
+
+运行流水线调度实验
+
+```bash
+python experiments/pipeline_test.py
+```
+
+测试不同启动间隔（II, Initiation Interval）下的流水线调度可行性，
+绘制 II vs 有效吞吐率 曲线，展示资源约束下的流水线边界。
+II越小吞吐率越高，但资源压力也越大。
+
+运行算法复杂度验证
+
+```bash
+python experiments/scalability_test.py
+```
+
+生成不同规模的随机DAG，测量调度运行时间，验证是否随节点数线性增长。
+
+运行可调度性分析
+
+```bash
+python experiments/schedulability_test.py
+```
+
+逐步收紧延迟约束，观察调度器何时失败，找出调度边界。
+
+3. 输出文件说明
+
+运行完成后，项目目录下将生成以下输出：
+
+```
+experiments/results/
+├── gantt_charts/              甘特图 + 利用率曲线 + 拓扑图 + 调度表
+│   ├── simple_expr_gantt.png
+│   ├── simple_expr_utilization.png
+│   ├── simple_expr_topology.png      DFG拓扑结构图
+│   ├── simple_expr_schedule.txt
+│   └── ... (其他数据集同理)
+└── comparison_plots/          对照实验图表
+    ├── simple_expr_strategy_comparison.png
+    ├── fir_filter_strategy_comparison.png
+    ├── fir_filter_sensitivity.png
+    ├── fir_filter_pareto.png           帕累托前沿图
+    ├── diffeq_solver_pareto.png        帕累托前沿图
+    ├── fir_filter_pipeline.png         流水线分析图
+    ├── simple_expr_pipeline.png        流水线分析图
+    ├── scalability_runtime.png
+    ├── scalability_latency.png
+    ├── fir_filter_schedulability.png
+    └── comparison_summary.txt
+```
+
+4. 添加自定义测试用例
+
+步骤1：编写DFG JSON文件
+
+在 `data/` 目录下创建新的JSON文件，格式如下：
+
+```json
+{
+  "nodes": [
+    {"id": "n0", "type": "ADD", "delay": 1, "deps": ["in0", "in1"]},
+    {"id": "n1", "type": "MUL", "delay": 2, "deps": ["in2", "in3"]},
+    {"id": "n2", "type": "SUB", "delay": 1, "deps": ["n0", "n1"]}
+  ],
+  "resources": {
+    "ADD": 2,
+    "MUL": 1,
+    "SUB": 1
+  }
+}
+```
+
+字段说明：
+- `id`: 节点唯一标识符
+- `type`: 操作类型（ADD, MUL, SUB, DIV等）
+- `delay`: 执行时延（时钟周期数）
+- `deps`: 前驱节点ID列表（输入节点可省略定义）
+- `resources`: 各类型运算单元的数量限制
+
+步骤2：main.py
+编辑 `main.py`，在 `test_cases` 列表中添加新用例：
+
+```python
+test_cases = [
+    ...
+    (os.path.join(base_dir, "data", "custom", "my_dfg.json"), "gantt_charts"),
+]
+```
+
+步骤3：运行
+
+```bash
+python main.py
+```
+
+5. 单独使用核心模块
+
+加载DFG并运行调度
+
+```python
+from src.dfg_parser import parse_dfg
+from src.list_scheduler import ListScheduler
+from src.metrics import schedule_summary, print_summary
+
+加载DFG
+dfg, resources = parse_dfg("data/small/simple_expr.json")
+
+创建调度器并执行
+scheduler = ListScheduler(dfg, resources)
+scheduler.schedule()
+
+验证
+assert scheduler.verify_schedule()
+
+输出指标
+summary = schedule_summary(scheduler)
+print_summary(summary)
+```
+
+生成可视化
+
+```python
+from src.visualizer import plot_gantt_chart, plot_utilization_curve
+
+plot_gantt_chart(scheduler.nodes, resources, output_path="gantt.png")
+plot_utilization_curve(summary["cycle_usage"], resources, output_path="util.png")
+```
+
+6. 调试与日志
+
+主程序运行时会输出一些信息到控制台，包括：
+加载的DFG节点数和资源限制
+ASAP关键路径长度
+调度完成时间和验证结果
+Latency、Utilization、Throughput等指标
+
+如果跑报错，可以按下面几步排查：
+1. 检查JSON文件格式是否正确
+2. 资源限制是否为正整数
+3. DFG必须是有向无环图（DAG），不能有循环依赖
+4. 开启 `--verbose` 模式看详细日志，定位问题
